@@ -1,0 +1,163 @@
+/**
+* Theme Name: Dog Buddy Match
+* Author: John Nguyen
+* Author URI: http://github.com/vnzacky
+* Email: vnzacky39@gmail.com
+* Package: DBM
+*/
+
+/* Desktop */
+@media screen and (min-width: 992px) {
+    /*
+    * Make Sidebar and Content same height
+    */
+    body:not(.front-page) #wrapper > .container-fluid {
+        display: table;
+        padding: 0;
+        width: 100%;
+    }
+    body:not(.front-page) #wrapper > .container-fluid > .row{
+        display: table-row;
+        vertical-align: top;
+    }
+    body:not(.front-page) #wrapper #main-content {
+        background-color: #fff;
+        display: table-cell;
+        float: none;
+        vertical-align: top;
+    }
+    body:not(.front-page) #wrapper #sidebar {
+        display: table-cell;
+        float: none;
+        vertical-align: top;
+    }
+    /* end */
+    body.infographic #wrapper #main-content #primary {
+        width: 1170px;
+        max-width: 1170px;
+        margin: 0 auto;
+    }
+    #wrapper #sidebar #sidebar-primary {
+        max-width: 310px;
+        width: 310px;
+    }
+    #wrapper #main-content #primary {
+        max-width: 810px;
+        width: 810px;
+        float: right;
+    }
+
+    .search #wrapper #sidebar #sidebar-primary{
+        float: right;
+    }
+    .search #wrapper #main-content #primary{
+        float: left;
+    }
+}
+
+/* Tablet */
+@media screen and (max-width: 991px ) {
+    header {
+        height: auto;
+        padding-bottom: 30px;
+    }
+    header #header-logo a {
+        position: relative;
+        margin: 0 auto;
+    }
+    header #header-menu .navigation.navigation-inline {
+        width: 320px;
+        margin: 45px auto 0;
+        float: none;
+    }
+    .search #wrapper #sidebar {
+        padding-bottom: 0;
+    }
+    #wrapper #main-content {
+        padding-bottom: 200px;
+    }
+    /** Footer **/
+    footer {
+        height: auto;
+    }
+    footer [class^='footer-']{
+        margin-bottom: 30px;
+    }
+    footer .social-footer {
+        text-align: center;
+        float: none;
+    }
+
+    input[type='text'],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"],
+    textarea, select,
+    .form-control {
+        margin-bottom: 15px;
+    }
+
+    .feature-box {
+        margin-bottom: 20px;
+    }
+    .feature-box h2 {
+        margin-bottom: 10px;
+    }
+    #accordion .panel-default > .panel-heading .panel-title a {
+        padding: 5px 0 5px 80px;
+    }
+    #accordion .panel .panel-body {
+        padding-left: 80px;
+    }
+}
+
+/*Mobile*/
+@media screen and (max-width: 767px ) {
+    header #header-menu .navigation{
+        text-align: center !important;
+    }
+    header #header-menu .navigation .btn{
+        margin: 0 10px !important;
+    }
+    body.search .alert-warning{
+        margin-bottom: 150px;
+    }
+    #banner .owl-carousel .slideshow-item img {
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 640px ) {
+    #banner .owl-carousel .slideshow-item img {
+        width: auto;
+    }
+    .best-images .item {
+        width: 33.33%;
+        margin-bottom: 15px;
+    }
+    .best-images .item:nth-child(3n+1) {
+        clear: left;
+    }
+}
+
+@media screen and (max-width: 480px ) {
+    header #header-menu .navigation  .btn {
+        margin-bottom: 15px!important;
+        width: 50%;
+    }
+
+    #dog-list .dog-box {
+        width: 80%;
+        margin: 0 auto 50px;
+    }
+}

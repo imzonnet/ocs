@@ -1,0 +1,16 @@
+/vendor
+/node_modules
+.env
+.idea
+/deploy.php
+*.DS_Store
+.bash_history
+.ssh
+.composer.lock
+.cache/
+.composer/
+.gitconfig
+.htacess
+.mysql_history
+public/uploads/*
+public/error_log
