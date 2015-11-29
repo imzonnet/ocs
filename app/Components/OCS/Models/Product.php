@@ -21,4 +21,10 @@ class Product extends Model
 	 */
 	protected $fillable = ['title', 'description'];
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function details() {
+		return $this->hasMany(OrderDetail::class, 'product_id');
+	}
 }

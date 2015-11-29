@@ -1,10 +1,10 @@
 <?php
 namespace App\Components\OCS\Repositories;
 
-use App\Components\OCS\Models\Service;
+use App\Components\OCS\Models\OrderStatus;
 use App\Repositories\EloquentBaseRepository;
 
-class EloquentServiceRepository extends EloquentBaseRepository implements ServiceRepository
+class EloquentOrderStatusRepository extends EloquentBaseRepository implements OrderStatusRepository
 {
     /**
      * @var $model
@@ -14,15 +14,12 @@ class EloquentServiceRepository extends EloquentBaseRepository implements Servic
 	/**
 	 * @param $model
 	 */
-    public function __construct(Service $model)
+    public function __construct(OrderStatus $model)
     {
         $this->model = $model;
     }
 
-	/**
-	 * @return mixed
-	 */
-	public function listServices() {
+	public function listStatus() {
 		return $this->model->lists('title', 'id');
 	}
 }

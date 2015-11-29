@@ -1,12 +1,12 @@
 <?php namespace App\Components\Dashboard\Http\Controllers\Backend;
 
 use App\Components\Dashboard\Http\Requests\UserRequest;
-use App\Components\Dashboard\Repositories\InterestRepository;
+use App\Components\Dashboard\Repositories\CustomerGroupRepository;
+use App\Components\Dashboard\Repositories\CustomerOrganizeRepository;
 use App\Components\Dashboard\Repositories\PermissionRepository;
 use App\Components\Dashboard\Repositories\RoleRepository;
 use App\Components\Dashboard\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
-use App\Libraries\MediaManager;
 use Carbon\Carbon;
 
 class UserController extends Controller {
@@ -14,13 +14,18 @@ class UserController extends Controller {
     protected $user;
     protected $role;
     protected $permission;
+	protected $organize;
+	protected $group;
 
-    public function __construct( UserRepository $user, RoleRepository $role, PermissionRepository $perms)
+    public function __construct( UserRepository $user, RoleRepository $role, PermissionRepository $perms,
+	    CustomerOrganizeRepository $organize, CustomerGroupRepository $group)
     {
         parent::__construct();
         $this->user = $user;
         $this->role = $role;
         $this->permission = $perms;
+	    $this->organize = $organize;
+	    $this->group = $group;
     }
 
     public function index()
@@ -39,18 +44,18 @@ class UserController extends Controller {
     {
         $title = "Create New User";
         $roles = $this->role->listRoles();
-        $groups = $this->role->listRoles();
-        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create_edit', compact('title', 'roles', 'groups'));
+        $groups = $this->group->listGroups();
+	    $organizes = $this->organize->listOrganizes();
+        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create_edit', compact('title', 'roles', 'groups', 'organizes'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param UserRequest $request
-     * @param MediaManager $media
      * @return Response
      */
-    public function store(UserRequest $request, MediaManager $media)
+    public function store(UserRequest $request)
     {
         $attr = $request->all();
         $attr['password'] = bcrypt($attr['password']);
@@ -73,8 +78,9 @@ class UserController extends Controller {
         $title = "Edit User";
         $user = $this->user->find($id);
         $roles = $this->role->listRoles();
-
-        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create_edit', compact('user', 'title', 'roles'));
+	    $groups = $this->group->listGroups();
+	    $organizes = $this->organize->listOrganizes();
+        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create_edit', compact('user', 'title', 'roles', 'groups', 'organizes'));
     }
 
     /**
@@ -82,10 +88,9 @@ class UserController extends Controller {
      *
      * @param  int $id
      * @param UserRequest $request
-     * @param MediaManager $media
      * @return Response
      */
-    public function update($id, UserRequest $request, MediaManager $media)
+    public function update($id, UserRequest $request)
     {
         $user = $this->user->find($id);
 

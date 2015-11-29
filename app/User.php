@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Components\Dashboard\Presenters\UserPresent;
+use App\Components\OCS\Models\Order;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -30,8 +31,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password',
-        'activation_code', 'activated',
+        'first_name', 'last_name', 'email', 'password', 'activation_code', 'activated',
+	    'job', 'phone', 'mobile', 'know_us', 'intro_person', 'group_id', 'organize_id',
         'city', 'address', 'country', 'gender', 'birthday'];
 
     /**
@@ -41,5 +42,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
+	public function orders() {
+		return $this->hasMany(Order::class, 'customer_id');
+	}
 
 }

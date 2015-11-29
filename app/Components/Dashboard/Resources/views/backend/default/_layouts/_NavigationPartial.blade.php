@@ -132,6 +132,24 @@
                     <!-- /.nav-second-level -->
                 </li>
                 @endif
+                <!-- OCS Service -->
+                @if( current_user()->ability(['admin'], ['ocs.order.index', 'ocs.order.create', 'ocs.order.update', 'ocs.order.delete']) )
+                <li>
+                    <a href="{{route('backend.ocs.order.index')}}"><i class="fa fa-user fa-fw"></i> {{ trans('OCS::cms.order.index') }}<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{route('backend.ocs.order.index')}}"><i class="fa fa-angle-double-right fa-fw"></i>{{ trans('OCS::cms.order.list') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.ocs.order.create')}}"><i class="fa fa-angle-double-right fa-fw"></i>{{ trans('OCS::cms.order.create') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.ocs.status.index')}}"><i class="fa fa-angle-double-right fa-fw"></i>{{ trans('OCS::cms.order.status') }}</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                @endif
 
             </ul>
         </div>

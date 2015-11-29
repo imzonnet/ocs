@@ -2,9 +2,9 @@
 
 use App\Repositories\BaseRepository;
 
-interface ProductRepository extends BaseRepository
+interface OrderStatusRepository extends BaseRepository
 {
 
-	public function listProducts();
+	public function listStatus();
 
 }

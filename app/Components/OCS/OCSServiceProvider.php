@@ -1,7 +1,16 @@
 <?php namespace App\Components\OCS;
 
+use App\Components\OCS\Models\OrderStatus;
+use App\Components\OCS\Repositories\EloquentOrderDetailRepository;
+use App\Components\OCS\Repositories\EloquentOrderRepository;
+use App\Components\OCS\Repositories\EloquentOrderStatusRepository;
 use App\Components\OCS\Repositories\EloquentProductRepository;
+use App\Components\OCS\Repositories\EloquentServiceRepository;
+use App\Components\OCS\Repositories\OrderDetailRepository;
+use App\Components\OCS\Repositories\OrderRepository;
+use App\Components\OCS\Repositories\OrderStatusRepository;
 use App\Components\OCS\Repositories\ProductRepository;
+use App\Components\OCS\Repositories\ServiceRepository;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use App\Components\TraitServiceProvider;
 
@@ -27,6 +36,10 @@ class OCSServiceProvider extends ServiceProvider
          * Repositories
          */
         $this->app->bind(ProductRepository::class, EloquentProductRepository::class);
+        $this->app->bind(ServiceRepository::class, EloquentServiceRepository::class);
+        $this->app->bind(OrderRepository::class, EloquentOrderRepository::class);
+        $this->app->bind(OrderStatusRepository::class, EloquentOrderStatusRepository::class);
+        $this->app->bind(OrderDetailRepository::class, EloquentOrderDetailRepository::class);
     }
 
     /**

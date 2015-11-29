@@ -451,3 +451,21 @@ table.dataTable thead .sorting:after {
 .dataTables .center{
     text-align: center;
 }
+
+.box-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+
+.box-message .alert {
+  margin: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}

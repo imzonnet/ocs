@@ -19,4 +19,13 @@ class EloquentCustomerOrganizeRepository extends EloquentBaseRepository implemen
         $this->model = $model;
     }
 
+	/**
+	 * Get list roles
+	 * @return array
+	 */
+	public function listOrganizes()
+	{
+		return $this->model->lists('name', 'id');
+	}
+
 }

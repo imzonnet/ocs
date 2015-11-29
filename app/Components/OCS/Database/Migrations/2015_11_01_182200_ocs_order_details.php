@@ -25,7 +25,7 @@ class OcsOrderDetails extends Migration
 		    $table->foreign('service_id')->references('id')->on('ocs_services')
 		          ->onUpdate('cascade')->onDelete('cascade');
 		    $table->integer('quantity');
-		    $table->tinyInteger('is_fee')->default(0);
+		    $table->tinyInteger('is_free')->default(0);
 			$table->decimal('price', 10, 2);
 		    $table->integer('created_by')->unsigned();
 		    $table->foreign('created_by')->references('id')->on('users')

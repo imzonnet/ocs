@@ -2,9 +2,7 @@
 
 use App\Repositories\BaseRepository;
 
-interface ProductRepository extends BaseRepository
+interface OrderDetailRepository extends BaseRepository
 {
-
-	public function listProducts();
 
 }

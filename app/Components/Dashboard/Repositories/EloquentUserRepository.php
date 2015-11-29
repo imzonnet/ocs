@@ -39,58 +39,5 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
         return $listUsers;
     }
 
-    /**
-     * Create new record
-     *
-     * @param array $attributes
-     * @return static
-     */
-    public function create(array $attributes = array())
-    {
-        $this->getLatLong($attributes['zipcode'], $attributes);
-        return $this->model->create($attributes);
-    }
 
-    /**
-     * Update a record
-     *
-     * @param User $user
-     * @param array $attributes
-     * @return mixed
-     * @throws \Exception
-     */
-    public function update($user, array $attributes = array())
-    {
-        $this->getLatLong($attributes['zipcode'], $attributes);
-        return $user->update($attributes);
-    }
-
-    /**
-     * Get list ID current interests
-     * @return array|null
-     */
-    public function currentInterests($user)
-    {
-        $interests = $user->interests()->get();
-        $list = [];
-        foreach( $interests as $interest ) {
-            $list[$interest->id] = $interest->name;
-        }
-        return $list;
-    }
-
-    /**
-     * Get Lat - Long via ZipCode
-     *
-     * @param $zipcode
-     * @param $attributes
-     * @return array
-     */
-    public function getLatLong($zipcode, &$attributes){
-        $result = getLatLong($zipcode);
-        //set value
-        $attributes['lat'] = $result['lat'];
-        $attributes['long'] = $result['lng'];
-        return $attributes;
-    }
 }

@@ -12,11 +12,4 @@ interface UserRepository extends BaseRepository
      */
     public function listUsers($status = true);
 
-    /**
-     * Get list ID current interests
-     * @param $user
-     * @return array|null
-     */
-    public function currentInterests($user);
-
 }

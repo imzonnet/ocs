@@ -19,4 +19,7 @@ class EloquentProductRepository extends EloquentBaseRepository implements Produc
         $this->model = $model;
     }
 
+	public function listProducts() {
+		return $this->model->lists('title', 'id');
+	}
 }

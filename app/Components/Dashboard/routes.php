@@ -31,5 +31,5 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth.backend'], function()
 
 
 Route::get('/', function () {
-	echo 'Hello world!';
+	return redirect()->route('backend.home');
 });
