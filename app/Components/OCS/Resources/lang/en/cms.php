@@ -20,5 +20,8 @@ return [
     'order.list' => 'List Orders',
     'order.create' => 'New Order',
     'order.edit' => 'Edit Order',
-    'order.status' => 'List Status',
+    'status.index' => 'Statuss',
+    'status.list' => 'List Statuss',
+    'status.create' => 'New Status',
+    'status.edit' => 'Edit Status',
 ];

@@ -14,8 +14,6 @@ class OrderHistory extends Model
 	 */
 	protected $table = 'ocs_order_histories';
 
-	public $timestamps = false;
-
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -27,9 +25,8 @@ class OrderHistory extends Model
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
 	public function order() {
-		return $this->hasMany(Order::class, 'order_id');
+		return $this->belongsTo(Order::class, 'order_id', 'id');
 	}
-
 	public function changed() {
 		return $this->belongsTo(User::class, 'changed_by', 'id');
 	}
@@ -37,7 +34,7 @@ class OrderHistory extends Model
 		return $this->belongsTo(User::class, 'assigned_to', 'id');
 	}
 	public function status() {
-		return $this->belongsTo(CustomerOrganize::class, 'organize_id', 'id');
+		return $this->belongsTo(OrderStatus::class, 'status_id', 'id');
 	}
 
 }

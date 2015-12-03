@@ -36,7 +36,7 @@
                                     <td class="center" style="min-width: 100px;">
                                         {!! Form::open(['route' => ['backend.ocs.order.destroy', $order->id], 'method' => 'delete', 'class' => 'form-delete']) !!}
                                         <div class="btn-order" role="order" aria-label="...">
-                                            <a href="{{route('backend.ocs.order.edit',[$order->id])}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{route('backend.ocs.order.edit',[$order->id])}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-cog"></i> Assign</a>
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                         </div>
                                         {!! Form::close() !!}

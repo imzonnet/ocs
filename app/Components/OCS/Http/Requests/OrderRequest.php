@@ -22,10 +22,16 @@ class OrderRequest extends Request
      */
     public function rules()
     {
-        return [
-            'order_code' => 'required|max:255',
-            'customer_id' => 'required|max:255',
-        ];
+	    if ($this->method() == 'PUT') {
+		    $valid = [
+		    ];
+	    } else {
+		    $valid = [
+			    'order_code' => 'required|max:255',
+			    'customer_id' => 'required|max:255',
+		    ];
+	    }
+        return $valid;
     }
 
 }

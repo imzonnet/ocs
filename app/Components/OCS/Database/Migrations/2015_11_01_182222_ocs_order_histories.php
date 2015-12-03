@@ -21,8 +21,8 @@ class OcsOrderHistories extends Migration
 		    $table->integer('changed_by')->unsigned();
 		    $table->foreign('changed_by')->references('id')->on('users')
 		          ->onUpdate('cascade')->onDelete('cascade');
-		    $table->integer('assigned_by')->unsigned();
-		    $table->foreign('assigned_by')->references('id')->on('users')
+		    $table->integer('assigned_to')->unsigned();
+		    $table->foreign('assigned_to')->references('id')->on('users')
 		          ->onUpdate('cascade')->onDelete('cascade');
 		    $table->integer('status_id')->unsigned();
 		    $table->foreign('status_id')->references('id')->on('ocs_order_status')

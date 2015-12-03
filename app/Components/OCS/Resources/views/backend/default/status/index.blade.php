@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <!--<a href="{{route('backend.ocs.status.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>-->
+                    <a href="{{route('backend.ocs.status.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

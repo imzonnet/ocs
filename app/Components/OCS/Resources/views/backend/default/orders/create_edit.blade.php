@@ -35,6 +35,12 @@
             </div>
 
             <div class="form-group">
+                <label>Process Date (<i class="fa fa-star star-validate"></i>)</label>
+                {!!Form::text('process_date', isset($order) ? $order->process_date : old('process_date'), ['class' => 'form-control datepicker', 'placeholder' => 'YYYY-MM-DD', "data-date-format"=>"yyyy-mm-dd"] ) !!}
+                {!! $errors->first('process_date', '<span class="help-block error">:message</span>') !!}
+            </div>
+
+            <div class="form-group">
                 <label>Manager</label>
                 {!! Form::select('manager_by', $customers, isset($order) ? $order->manager_by : old('manager_by'), ['class' => 'form-control chosen-select'] ) !!}
             </div>

@@ -143,14 +143,25 @@
                         <li>
                             <a href="{{route('backend.ocs.order.create')}}"><i class="fa fa-angle-double-right fa-fw"></i>{{ trans('OCS::cms.order.create') }}</a>
                         </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                @endif
+                <!-- OCS Status -->
+                @if( current_user()->ability(['admin'], ['ocs.order.index', 'ocs.order.create', 'ocs.order.update', 'ocs.order.delete']) )
+                <li>
+                    <a href="{{route('backend.ocs.status.index')}}"><i class="fa fa-user fa-fw"></i> {{ trans('OCS::cms.status.index') }}<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
                         <li>
-                            <a href="{{route('backend.ocs.status.index')}}"><i class="fa fa-angle-double-right fa-fw"></i>{{ trans('OCS::cms.order.status') }}</a>
+                            <a href="{{route('backend.ocs.status.index')}}"><i class="fa fa-angle-double-right fa-fw"></i>{{ trans('OCS::cms.status.list') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{route('backend.ocs.status.create')}}"><i class="fa fa-angle-double-right fa-fw"></i>{{ trans('OCS::cms.status.create') }}</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 @endif
-
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

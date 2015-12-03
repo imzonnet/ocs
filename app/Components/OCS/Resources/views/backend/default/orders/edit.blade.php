@@ -11,7 +11,6 @@
             <div class="form-group">
                 <label>Order Code (<i class="fa fa-star star-validate"></i>)</label>
                 <p>{!!$order->order_code!!}</p>
-                {!! $errors->first('order_code', '<span class="help-block error">:message</span>') !!}
             </div>
 
             <div class="form-group">
@@ -23,24 +22,33 @@
                 <label>Organize </label>
                 <p>{{ $order->organize->name }}</p>
             </div>
-
             <div class="form-group">
                 <label>Order Address (<i class="fa fa-star star-validate"></i>)</label>
                 {!!Form::text('order_address', isset($order) ? $order->order_address : old('order_address'), ['class' => 'form-control', 'placeholder' => ''] ) !!}
             </div>
-
+            <div class="form-group">
+                <label>Process Date (<i class="fa fa-star star-validate"></i>)</label>
+                <p>{{ $order->process_date }}</p>
+            </div>
             <div class="form-group">
                 <label>Manager</label>
-                {!! Form::select('manager_by', $customers, isset($order) ? $order->manager_by : old('manager_by'), ['class' => 'form-control chosen-select'] ) !!}
+                <p>{{ $order->manager->present()->fullName }}</p>
             </div>
-
+            <div class="form-group">
+                <label>Assign To</label>
+                {!! Form::select('assigned_to', $customers, isset($order) ? $order->histories->first()->assigned_to : old('assigned_to'), ['class' => 'form-control chosen-select'] ) !!}
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                {!! Form::select('status', $status, isset($order) ? $order->histories->first()->status_id : old('status'), ['class' => 'form-control chosen-select'] ) !!}
+            </div>
             <div class="form-group">
                 <a href="{{route('backend.ocs.order.index')}}" class="btn btn-warning">Cancel</a>
                 {!! Form::submit('Update', ['class' => 'btn btn-success', 'name' => 'update']) !!}
             </div>
             {!! Form::close() !!}
             <h3>List Services</h3>
-            <table id="list-items" class="table table-stripped">
+            <table id="list-items" class="table table-striped">
                 <tr>
                     <th>Product</th>
                     <th>Service</th>
@@ -73,6 +81,25 @@
             <div class="form-group">
                 <a href="{{route('backend.ocs.order.detail.create', $order->id)}}" class="btn btn-warning">Edit Service</a>
             </div>
+        </div>
+        <div class="panel-footer">
+            <h3>Histories</h3>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Changed By</th>
+                    <th>Assigned To</th>
+                    <th>Changed Date</th>
+                </tr>
+            @foreach( $order->histories->all() as $id => $item )
+                <tr>
+                    <td>{{ $id }}</td>
+                    <td>{{ $item->changed->present()->fullName }}</td>
+                    <td>{{ $item->assigned->present()->fullName }}</td>
+                    <td>{{ $item->created_at }}</td>
+                </tr>
+            @endforeach
+            </table>
         </div>
     </div>
 @stop

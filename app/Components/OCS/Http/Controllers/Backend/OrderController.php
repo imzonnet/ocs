@@ -3,21 +3,24 @@
 use App\Components\Dashboard\Repositories\CustomerOrganizeRepository;
 use App\Components\Dashboard\Repositories\UserRepository;
 use App\Components\OCS\Http\Requests\OrderRequest;
+use App\Components\OCS\Repositories\OrderHistoryRepository;
 use App\Components\OCS\Repositories\OrderRepository;
+use App\Components\OCS\Repositories\OrderStatusRepository;
 use App\Components\OCS\Repositories\ProductRepository;
 use App\Components\OCS\Repositories\ServiceRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Guard;
 
 class OrderController extends Controller {
 
-    protected $order;
-    protected $organize;
-    protected $user;
-	protected $product;
-	protected $service;
+    protected $order, $history;
+    protected $organize, $user;
+	protected $product, $service;
+	protected $status;
 
     public function __construct( OrderRepository $order, CustomerOrganizeRepository $organize, UserRepository $user,
-		ProductRepository $productRepository, ServiceRepository $serviceRepository
+		ProductRepository $productRepository, ServiceRepository $serviceRepository, OrderStatusRepository $orderStatusRepository,
+		OrderHistoryRepository $orderHistoryRepository
     )
     {
         parent::__construct();
@@ -26,6 +29,8 @@ class OrderController extends Controller {
         $this->user = $user;
 	    $this->product = $productRepository;
 	    $this->service = $serviceRepository;
+	    $this->status = $orderStatusRepository;
+	    $this->history = $orderHistoryRepository;
     }
 
     public function index()
@@ -45,9 +50,8 @@ class OrderController extends Controller {
         $title = "Create New Order";
 	    $customers = $this->user->listUsers();
 	    $organizes = $this->organize->listOrganizes();
-	    $products = $this->product->listProducts();
-	    $services = $this->service->listServices();
-        return view('OCS::' . $this->link_type . '.' . $this->current_theme . '.orders.create_edit', compact('title', 'customers', 'organizes', 'products', 'services'));
+		$status = $this->status->listStatus();
+        return view('OCS::' . $this->link_type . '.' . $this->current_theme . '.orders.create_edit', compact('title', 'customers', 'organizes', 'status'));
     }
 
     /**
@@ -76,21 +80,28 @@ class OrderController extends Controller {
 	    $organizes = $this->organize->listOrganizes();
 	    $products = $this->product->listProducts();
 	    $services = $this->service->listServices();
-        return view('OCS::' . $this->link_type . '.' . $this->current_theme . '.orders.edit', compact('order', 'title', 'customers', 'organizes', 'products', 'services'));
+	    $status = $this->status->listStatus();
+        return view('OCS::' . $this->link_type . '.' . $this->current_theme . '.orders.edit', compact('order', 'title', 'customers', 'organizes', 'products', 'services', 'status'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @param OrderRequest $request
-     * @return Response
-     */
-    public function update($id, OrderRequest $request)
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int $id
+	 * @param OrderRequest $request
+	 * @param Guard $user
+	 *
+	 * @return Response
+	 */
+    public function update($id, OrderRequest $request, Guard $user)
     {
         $order = $this->order->find($id);
-
         $this->order->update($order, $request->all());
+	    $order->histories()->create([
+		   'changed_by' => $user->user()->id,
+		    'assigned_to' => $request->get('assigned_to'),
+		    'status_id' => $request->get('status')
+	    ]);
         return redirect()->back()->with('success_message', 'The order has been updated');
     }
 

@@ -1,12 +1,15 @@
 <?php namespace App\Components\OCS;
 
+use App\Components\OCS\Models\OrderHistory;
 use App\Components\OCS\Models\OrderStatus;
 use App\Components\OCS\Repositories\EloquentOrderDetailRepository;
+use App\Components\OCS\Repositories\EloquentOrderHistoryRepository;
 use App\Components\OCS\Repositories\EloquentOrderRepository;
 use App\Components\OCS\Repositories\EloquentOrderStatusRepository;
 use App\Components\OCS\Repositories\EloquentProductRepository;
 use App\Components\OCS\Repositories\EloquentServiceRepository;
 use App\Components\OCS\Repositories\OrderDetailRepository;
+use App\Components\OCS\Repositories\OrderHistoryRepository;
 use App\Components\OCS\Repositories\OrderRepository;
 use App\Components\OCS\Repositories\OrderStatusRepository;
 use App\Components\OCS\Repositories\ProductRepository;
@@ -40,6 +43,7 @@ class OCSServiceProvider extends ServiceProvider
         $this->app->bind(OrderRepository::class, EloquentOrderRepository::class);
         $this->app->bind(OrderStatusRepository::class, EloquentOrderStatusRepository::class);
         $this->app->bind(OrderDetailRepository::class, EloquentOrderDetailRepository::class);
+        $this->app->bind(OrderHistoryRepository::class, EloquentOrderHistoryRepository::class);
     }
 
     /**
