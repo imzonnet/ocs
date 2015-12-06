@@ -31,16 +31,20 @@
                 <p>{{ $order->process_date }}</p>
             </div>
             <div class="form-group">
+                <label>Finish Date (<i class="fa fa-star star-validate"></i>)</label>
+                {!!Form::text('finish_date', isset($order) ? $order->finish_date : old('finish_date'), ['class' => 'form-control datepicker', 'placeholder' => 'YYYY-MM-DD', "data-date-format"=>"yyyy-mm-dd"] ) !!}
+            </div>
+            <div class="form-group">
                 <label>Manager</label>
                 <p>{{ $order->manager->present()->fullName }}</p>
             </div>
             <div class="form-group">
                 <label>Assign To</label>
-                {!! Form::select('assigned_to', $customers, isset($order) ? $order->histories->first()->assigned_to : old('assigned_to'), ['class' => 'form-control chosen-select'] ) !!}
+                {!! Form::select('assigned_to', $customers, isset($order) && $order->histories->first() ? $order->histories->first()->assigned_to : old('assigned_to'), ['class' => 'form-control chosen-select'] ) !!}
             </div>
             <div class="form-group">
                 <label>Status</label>
-                {!! Form::select('status', $status, isset($order) ? $order->histories->first()->status_id : old('status'), ['class' => 'form-control chosen-select'] ) !!}
+                {!! Form::select('status', $status, isset($order) && $order->histories->first() ? $order->histories->first()->status_id : old('status'), ['class' => 'form-control chosen-select'] ) !!}
             </div>
             <div class="form-group">
                 <a href="{{route('backend.ocs.order.index')}}" class="btn btn-warning">Cancel</a>
@@ -57,7 +61,7 @@
                     <th>Price</th>
                     <th>Note</th>
                 </tr>
-                @if( $order->details()->count() > 0)
+                @if( $order->details->count() > 0)
                     @foreach( $order->details->all() as $detail)
                         <tr>
                             <td>
@@ -84,6 +88,7 @@
         </div>
         <div class="panel-footer">
             <h3>Histories</h3>
+            @if( $order->histories->count() > 0)
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
@@ -91,6 +96,7 @@
                     <th>Assigned To</th>
                     <th>Changed Date</th>
                 </tr>
+
             @foreach( $order->histories->all() as $id => $item )
                 <tr>
                     <td>{{ $id }}</td>
@@ -100,6 +106,9 @@
                 </tr>
             @endforeach
             </table>
+            @else
+
+            @endif
         </div>
     </div>
 @stop

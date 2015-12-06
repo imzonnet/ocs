@@ -39,6 +39,11 @@
                 {!!Form::text('process_date', isset($order) ? $order->process_date : old('process_date'), ['class' => 'form-control datepicker', 'placeholder' => 'YYYY-MM-DD', "data-date-format"=>"yyyy-mm-dd"] ) !!}
                 {!! $errors->first('process_date', '<span class="help-block error">:message</span>') !!}
             </div>
+            <div class="form-group">
+                <label>Finish Date (<i class="fa fa-star star-validate"></i>)</label>
+                {!!Form::text('finish_date', isset($order) ? $order->finish_date : old('finish_date'), ['class' => 'form-control datepicker', 'placeholder' => 'YYYY-MM-DD', "data-date-format"=>"yyyy-mm-dd"] ) !!}
+                {!! $errors->first('finish_date', '<span class="help-block error">:message</span>') !!}
+            </div>
 
             <div class="form-group">
                 <label>Manager</label>
