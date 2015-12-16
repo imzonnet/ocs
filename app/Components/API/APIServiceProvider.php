@@ -1,4 +1,4 @@
-<?php namespace App\Components\Dashboard;
+<?php namespace App\Components\API;
 
 use App\Components\Dashboard\Repositories\CountryRepository;
 use App\Components\Dashboard\Repositories\CustomerGroupRepository;
@@ -20,7 +20,7 @@ use App\Role;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use App\Components\TraitServiceProvider;
 
-class DashboardServiceProvider extends ServiceProvider
+class APIServiceProvider extends ServiceProvider
 {
 
     /**
@@ -30,41 +30,14 @@ class DashboardServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Components\Dashboard\Http\Controllers';
+    protected $namespace = 'App\Components\API\Http\Controllers';
 
-    protected $component = 'Dashboard';
+    protected $component = 'API';
 
     use TraitServiceProvider;
 
     public function register()
     {
-        /**
-         * Repositories
-         */
-        $this->app->bind(UserRepository::class, EloquentUserRepository::class);
-        $this->app->bind(RoleRepository::class, EloquentRoleRepository::class);
-        $this->app->bind(PermissionRepository::class, EloquentPermissionRepository::class);
-
-        $this->app->bind(CustomerGroupRepository::class, EloquentCustomerGroupRepository::class);
-        $this->app->bind(CustomerOrganizeRepository::class, EloquentCustomerOrganizeRepository::class);
-        $this->app->bind(CountryRepository::class, EloquentCountryRepository::class);
-        $this->app->bind(TownRepository::class, EloquentTownRepository::class);
-        $this->app->bind(DistrictRepository::class, EloquentDistrictRepository::class);
-    }
-
-    /**
-     * Register Roles & Permission for Component
-     *
-     * If you want change permission name to other name.
-     * You should remove old permission name with function permissionsDrop()
-     * private function dropPermissions() {
-     *      return ['old_name1', 'old_name2'];
-     * }
-     *
-     * return array Permission name
-     */
-    private function listPermissions() {
-        return ['user', 'role', 'customer_group', 'customer_organize'];
     }
 
 }

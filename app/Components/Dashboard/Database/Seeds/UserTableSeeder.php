@@ -30,9 +30,7 @@ class UserTableSeeder extends Seeder {
         $user->last_name = "Nguyen";
         $user->email = "vnzacky39@gmail.com";
         $user->password = bcrypt('123456');
-        $user->city = 'Da Nang';
         $user->address = 'Hai Chau';
-        $user->country = 'Viet Nam';
         $user->gender = 1;
         $user->birthday = \Carbon\Carbon::createFromDate(1993, 10, 10);
         $user->activated = 1;
@@ -44,9 +42,7 @@ class UserTableSeeder extends Seeder {
         $user2->last_name = "Vu";
         $user2->email = "tusinh.information@gmail.com";
         $user2->password = bcrypt('123456');
-        $user2->city = 'Da Nang';
         $user2->address = 'Hai Chau';
-	    $user2->country = 'Viet Nam';
         $user2->gender = 1;
         $user2->birthday = \Carbon\Carbon::createFromDate(1985, 10, 10);
         $user2->activated = 1;

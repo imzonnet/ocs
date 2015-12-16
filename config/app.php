@@ -151,6 +151,7 @@ return [
          */
         App\Components\Dashboard\DashboardServiceProvider::class,
         App\Components\OCS\OCSServiceProvider::class,
+        App\Components\API\APIServiceProvider::class,
 
         //debug bar
         Barryvdh\Debugbar\ServiceProvider::class,

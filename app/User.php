@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Components\Dashboard\Models\District;
 use App\Components\Dashboard\Presenters\UserPresent;
 use App\Components\OCS\Models\Order;
 use Illuminate\Auth\Authenticatable;
@@ -33,7 +34,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password', 'activation_code', 'activated',
 	    'job', 'phone', 'mobile', 'know_us', 'intro_person', 'group_id', 'organize_id',
-        'city', 'address', 'country', 'gender', 'birthday'];
+        'district_id', 'address', 'gender', 'birthday'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -46,4 +47,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany(Order::class, 'customer_id');
 	}
 
+	public function district() {
+		return $this->belongsTo(District::class, 'district_id', 'id');
+	}
 }

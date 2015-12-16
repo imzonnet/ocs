@@ -26,6 +26,9 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth.backend'], function()
 
     Route::resource('group', 'Backend\CustomerGroupController');
     Route::resource('organize', 'Backend\CustomerOrganizeController');
+    Route::resource('country', 'Backend\CountryController');
+    Route::resource('country.town', 'Backend\TownController');
+    Route::resource('town.district', 'Backend\DistrictController');
 
 });
 

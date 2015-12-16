@@ -1,10 +1,13 @@
 <?php namespace App\Components\Dashboard\Http\Controllers\Backend;
 
 use App\Components\Dashboard\Http\Requests\UserRequest;
+use App\Components\Dashboard\Repositories\CountryRepository;
 use App\Components\Dashboard\Repositories\CustomerGroupRepository;
 use App\Components\Dashboard\Repositories\CustomerOrganizeRepository;
+use App\Components\Dashboard\Repositories\DistrictRepository;
 use App\Components\Dashboard\Repositories\PermissionRepository;
 use App\Components\Dashboard\Repositories\RoleRepository;
+use App\Components\Dashboard\Repositories\TownRepository;
 use App\Components\Dashboard\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -16,9 +19,12 @@ class UserController extends Controller {
     protected $permission;
 	protected $organize;
 	protected $group;
+	protected $country, $town, $district;
 
     public function __construct( UserRepository $user, RoleRepository $role, PermissionRepository $perms,
-	    CustomerOrganizeRepository $organize, CustomerGroupRepository $group)
+	    CustomerOrganizeRepository $organize, CustomerGroupRepository $group,
+		CountryRepository $country, TownRepository $town, DistrictRepository $district)
+
     {
         parent::__construct();
         $this->user = $user;
@@ -26,6 +32,9 @@ class UserController extends Controller {
         $this->permission = $perms;
 	    $this->organize = $organize;
 	    $this->group = $group;
+	    $this->country = $country;
+	    $this->town = $town;
+	    $this->district = $district;
     }
 
     public function index()
@@ -46,7 +55,8 @@ class UserController extends Controller {
         $roles = $this->role->listRoles();
         $groups = $this->group->listGroups();
 	    $organizes = $this->organize->listOrganizes();
-        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create_edit', compact('title', 'roles', 'groups', 'organizes'));
+	    $countries = $this->country->listCountries();
+        return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.create_edit', compact('title', 'roles', 'groups', 'organizes', 'countries'));
     }
 
     /**

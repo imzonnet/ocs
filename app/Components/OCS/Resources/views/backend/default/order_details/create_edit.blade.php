@@ -103,7 +103,6 @@
         $( "#order-details" ).submit(function( event ) {
             event.preventDefault();
             var form = $(this);
-            console.log(form.attr('action'));
             $.ajax({
                 type : 'POST',
                 url : form.attr('action'),

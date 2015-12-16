@@ -98,6 +98,9 @@
                         <li>
                             <a href="{{route('backend.user.create')}}"><i class="fa fa-angle-double-right fa-fw"></i>{{ trans('Dashboard::cms.user.create') }}</a>
                         </li>
+                        <li>
+                            <a href="{{route('backend.country.index')}}"><i class="fa fa-globe fa-fw"></i>{{ trans('Dashboard::cms.country.index') }}</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

@@ -28,8 +28,8 @@ class CreateUsersTable extends Migration {
 			$table->string('know_us')->nullable();
 			$table->string('intro_person')->nullable();
 			$table->string('address')->nullable();
-			$table->string('city')->nullable();
-			$table->string('country')->nullable();
+			$table->integer('district_id')->unsigned()->nullable();
+			$table->foreign('district_id')->references('id')->on('ocs_districts')->onUpdate('cascade')->onDelete('cascade');
             $table->string('activation_code')->nullable();
             $table->tinyInteger('activated')->default(0);
 			$table->integer('group_id')->unsigned()->nullable();
