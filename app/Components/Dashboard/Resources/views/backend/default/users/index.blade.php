@@ -6,11 +6,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="{{route('backend.user.create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>
+                    <a href="{{route('backend.user.search')}}" class="btn btn-info"><i class="fa fa-search"></i> Search Customer</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
-                        <table class="table table-striped table-bordered table-hover dataTables">
+                        <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>Id</th>
@@ -42,6 +43,7 @@
                             </tbody>
                         </table>
                     </div>
+                    {!! $users->setPath('')->render() !!}
                     <!-- /.table-responsive -->
                 </div>
                 <!-- /.panel-body -->

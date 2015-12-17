@@ -16,5 +16,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth.backend'], function() {
 
     Route::get('address/town/{country_id}', ['as' => 'api.address.town' ,'uses' => 'UserController@getTowns']);
     Route::get('address/district/{town_id}', ['as' => 'api.address.district' ,'uses' => 'UserController@getDistricts']);
+    Route::post('user/info', ['as' => 'api.user.info' ,'uses' => 'UserController@postInfo']);
+    Route::get('user/search', ['as' => 'api.user.search' ,'uses' => 'UserController@getSearch']);
 
 });

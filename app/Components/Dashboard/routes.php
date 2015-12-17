@@ -22,6 +22,7 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth.backend'], function()
 
     Route::resource('role', 'Backend\RoleController');
     Route::resource('role.permission', 'Backend\PermissionController', ['only' => ['index', 'store']]);
+    Route::get('user/search', ['as' => 'backend.user.search', 'uses' => 'Backend\UserController@getSearch']);
     Route::resource('user', 'Backend\UserController');
 
     Route::resource('group', 'Backend\CustomerGroupController');

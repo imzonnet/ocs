@@ -21,7 +21,7 @@ body {
     clear: both;
 }
 
-.help-block.error {
+.error {
     color: #a94442;
 }
 @media(min-width:768px) {

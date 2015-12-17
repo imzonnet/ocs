@@ -39,7 +39,7 @@ class UserController extends Controller {
 
     public function index()
     {
-        $users = $this->user->all();
+        $users = $this->user->paginate(20);
         $title = "List Users";
         return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.index', compact('title', 'users'));
     }
@@ -130,5 +130,10 @@ class UserController extends Controller {
         $user->delete();
         return redirect()->back()->with('success_message', 'The account has been deleted');
     }
+
+	public function getSearch(){
+		$title = "Search customer";
+		return view('Dashboard::' . $this->link_type . '.' . $this->current_theme . '.users.search', compact('title'));
+	}
 
 }

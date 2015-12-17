@@ -1358,22 +1358,4 @@ Sidebar
     }
 }
 
-#pet-avatar-wrapper #preview {
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-}
-#pet-avatar-wrapper #preview img {
-    max-width: none;
-    width: 150px;
-    height: 150px;
-}
-
-#pet-avatar-wrapper .modal-body {
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-}
-#pet-avatar-wrapper #avatarResize {
-    max-width: none;
-}
+.error

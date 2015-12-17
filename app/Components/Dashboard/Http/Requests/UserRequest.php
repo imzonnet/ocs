@@ -28,6 +28,7 @@ class UserRequest extends Request
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|confirmed|min:6',
             'role' => 'required',
+            'birthday' => 'required',
         ];
 
         if ($this->method() == 'PUT') {

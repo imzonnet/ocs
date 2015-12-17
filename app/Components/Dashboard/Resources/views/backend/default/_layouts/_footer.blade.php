@@ -13,6 +13,7 @@
     <script src="{{asset('assets/ckeditor/adapters/jquery.js')}}"></script>
     <script src="{{asset('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{asset('assets/chosen/chosen.jquery.min.js')}}"></script>
+    <script src="{{asset('assets/form-validation/jquery.validate.min.js')}}"></script>
 
     <script src="{{asset('templates/backend/default/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('templates/backend/default/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js')}}"></script>
